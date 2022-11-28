@@ -40,8 +40,9 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async context => {
   const {slug: slug} = context.params;
+  // const response = await db.doc('')
   const res = await db.collection('entries').where('slug', '==', slug).get();
-  const entry = res.docs.map(entry => entry.data());
+  const entry = res.docs.map(entry => ({id: entry.id, ...entry.data()}));
   getLog(res)
   if(entry.length)
     return {

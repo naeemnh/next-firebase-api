@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import {collection, query, where, getDocs} from 'firebase/firestore'
+
 import db from '../../utils/db';
 
 const Posts = ({entriesData}) => {
